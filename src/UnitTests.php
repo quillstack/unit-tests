@@ -80,9 +80,8 @@ class UnitTests
             }
         }
 
-        $xml = new \SimpleXMLElement('<xml/>');
-        $coverage = $xml->addChild('coverage');
-        $project = $coverage->addChild('project');
+        $xml = new \SimpleXMLElement('<coverage/>');
+        $project = $xml->addChild('project');
         foreach ($output as $file => $lines) {
             $class = $project->addChild('file');
             $class->addAttribute('name', $file);
