@@ -3,6 +3,9 @@
 
 declare(strict_types=1);
 
-use Quillstack\DI\Container;
+use Quillstack\UnitTests\UnitTests;
 
-$di = new Container();
+require __DIR__ . '/../../../../vendor/autoload.php';
+$tests = require __DIR__ . '/../../../../tests/unit.php';
+$unitTests = new UnitTests($tests);
+$unitTests->run();
