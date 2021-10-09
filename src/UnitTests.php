@@ -59,10 +59,6 @@ class UnitTests
                 continue;
             }
 
-            if (str_ends_with($file, 'src/UnitTests.php')) {
-                continue;
-            }
-
             foreach ($coverage as $line => $value) {
                 $result[$file][$line] = $value <= 0 ? 0 : 1;
             }
@@ -72,10 +68,6 @@ class UnitTests
 
         foreach ($lines as $file => $coverage) {
             if (!str_starts_with($file, __DIR__)) {
-                continue;
-            }
-
-            if (str_ends_with($file, 'src/UnitTests.php')) {
                 continue;
             }
 
