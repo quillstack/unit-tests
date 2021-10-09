@@ -24,7 +24,8 @@
         }
     },
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "quillstack/local-storage": "^0.0.1"
     },
     "require-dev": {
         "quillstack/di": "^0.0.3"
