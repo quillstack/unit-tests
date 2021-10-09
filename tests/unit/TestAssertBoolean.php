@@ -2,7 +2,7 @@
 
 namespace Quillstack\Tests\Unit;
 
-use Quillstack\UnitTests\AssertException;
+use Quillstack\UnitTests\AssertExceptions;
 use Quillstack\UnitTests\Exceptions\Types\ValueIsNotFalseException;
 use Quillstack\UnitTests\Exceptions\Types\ValueIsNotTrueException;
 use Quillstack\UnitTests\Exceptions\Types\ValueNotBooleanException;
@@ -12,7 +12,7 @@ class TestAssertBoolean
 {
     public function __construct(
         private AssertBoolean $assertBoolean,
-        private AssertException $assertException
+        private AssertExceptions $assertExceptions
     ) {
         //
     }
@@ -24,13 +24,13 @@ class TestAssertBoolean
 
     public function falseFailureValue()
     {
-        $this->assertException->expect(ValueIsNotFalseException::class);
+        $this->assertExceptions->expect(ValueIsNotFalseException::class);
         $this->assertBoolean->isFalse(true);
     }
 
     public function falseFailureType()
     {
-        $this->assertException->expect(ValueIsNotFalseException::class);
+        $this->assertExceptions->expect(ValueIsNotFalseException::class);
         $this->assertBoolean->isFalse(1);
     }
 
@@ -41,13 +41,13 @@ class TestAssertBoolean
 
     public function trueFailureValue()
     {
-        $this->assertException->expect(ValueIsNotTrueException::class);
+        $this->assertExceptions->expect(ValueIsNotTrueException::class);
         $this->assertBoolean->isTrue(false);
     }
 
     public function trueFailureType()
     {
-        $this->assertException->expect(ValueIsNotTrueException::class);
+        $this->assertExceptions->expect(ValueIsNotTrueException::class);
         $this->assertBoolean->isTrue(0);
     }
 
@@ -59,7 +59,7 @@ class TestAssertBoolean
 
     public function booleanFailure()
     {
-        $this->assertException->expect(ValueNotBooleanException::class);
+        $this->assertExceptions->expect(ValueNotBooleanException::class);
         $this->assertBoolean->isBoolean(1);
         $this->assertBoolean->isBoolean('abc');
     }

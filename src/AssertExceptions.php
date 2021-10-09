@@ -2,7 +2,7 @@
 
 namespace Quillstack\UnitTests;
 
-class AssertException
+class AssertExceptions
 {
     public function expect(string $exception): void
     {
