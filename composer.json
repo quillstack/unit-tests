@@ -1,0 +1,32 @@
+{
+    "name": "quillstack/unit-tests",
+    "description": "A simple library for unit testing in PHP 8.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "quillstack",
+        "php",
+        "php8",
+        "unit",
+        "tests"
+    ],
+    "homepage": "https://quillstack.org/unit-tests",
+    "authors": [
+        {
+            "name": "Radek Ziemniewicz",
+            "email": "radek@quillstack.org"
+        }
+    ],
+    "bin": ["bin/unit-tests"],
+    "autoload": {
+        "psr-4": {
+            "Quillstack\\UnitTests\\": "src/",
+            "Quillstack\\Tests\\Unit\\": "tests/unit/"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "quillstack/local-storage": "^0.0.1",
+        "quillstack/di": "^0.0.3"
+    }
+}
