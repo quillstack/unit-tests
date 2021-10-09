@@ -17,6 +17,7 @@
             "email": "radek@quillstack.org"
         }
     ],
+    "bin": ["bin/unit-tests"],
     "autoload": {
         "psr-4": {
             "Quillstack\\UnitTests\\": "src/",
