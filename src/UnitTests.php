@@ -49,7 +49,7 @@ class UnitTests
         }
 
         $this->testCoverage->end();
-        $xml = $this->testCoverage->process();
+        $xml = $this->testCoverage->process(__DIR__);
 
         $storage = $this->container->get(StorageInterface::class);
         $storage->save(__DIR__ . '/../unit-tests.coverage.xml', $xml);
