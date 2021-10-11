@@ -21,10 +21,7 @@ $container = new Container([
     TestCoverageInterface::class => TestCoverage::class,
     TestCoverageDriverInterface::class => PHPDbg::class,
     TestCoverageOutputInterface::class => CoverageXml::class,
-    PHPDbg::class => [
-        'path' => __DIR__,
-    ],
 ]);
 
 $unitTests = new UnitTests($container, $tests);
-$unitTests->run();
+$unitTests->run($srcDir);
