@@ -16,8 +16,9 @@ class UnitTests
         $this->testCoverage = $this->container->get(TestCoverageInterface::class);
     }
 
-    public function run(): void
+    public function run(?string $dir = __DIR__): void
     {
+        $dir ??= __DIR__;
         $this->testCoverage->start();
 
         foreach ($this->tests as $test) {
@@ -49,7 +50,7 @@ class UnitTests
         }
 
         $this->testCoverage->end();
-        $xml = $this->testCoverage->process();
+        $xml = $this->testCoverage->process($dir);
 
         $storage = $this->container->get(StorageInterface::class);
         $storage->save(__DIR__ . '/../unit-tests.coverage.xml', $xml);

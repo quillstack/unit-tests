@@ -28,6 +28,6 @@
         "php": "^8.0",
         "quillstack/local-storage": "^0.0.1",
         "quillstack/di": "^0.0.3",
-        "quillstack/test-coverage": "^0.0.3"
+        "quillstack/test-coverage": "^0.0.4"
     }
 }
