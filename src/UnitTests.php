@@ -3,28 +3,26 @@
 namespace Quillstack\UnitTests;
 
 use Exception;
-use Quillstack\DI\Container;
-use Quillstack\LocalStorage\LocalStorage;
+use Psr\Container\ContainerInterface;
 use Quillstack\StorageInterface\StorageInterface;
+use Quillstack\TestCoverage\TestCoverageInterface;
 
 class UnitTests
 {
-    private Container $di;
+    private TestCoverageInterface $testCoverage;
 
-    public function __construct(private array $tests = [])
+    public function __construct(private ContainerInterface $container, private array $tests = [])
     {
-        $this->di = new Container([
-            StorageInterface::class => LocalStorage::class,
-        ]);
+        $this->testCoverage = $this->container->get(TestCoverageInterface::class);
     }
 
     public function run(): void
     {
-        \phpdbg_start_oplog();
+        $this->testCoverage->start();
 
         foreach ($this->tests as $test) {
             echo $test, ':', PHP_EOL;
-            $testObject = $this->di->get($test);
+            $testObject = $this->container->get($test);
             $methods = get_class_methods($test);
 
             foreach ($methods as $method) {
@@ -50,49 +48,10 @@ class UnitTests
             echo PHP_EOL;
         }
 
-        $data = \phpdbg_end_oplog();
-        $result = [];
-        $output = [];
+        $this->testCoverage->end();
+        $xml = $this->testCoverage->process();
 
-        foreach ($data as $file => $coverage) {
-            if (!str_starts_with($file, __DIR__)) {
-                continue;
-            }
-
-            foreach ($coverage as $line => $value) {
-                $result[$file][$line] = $value <= 0 ? 0 : 1;
-            }
-        }
-
-        $lines = phpdbg_get_executable();
-
-        foreach ($lines as $file => $coverage) {
-            if (!str_starts_with($file, __DIR__)) {
-                continue;
-            }
-
-            foreach ($coverage as $line => $value) {
-                if (isset($result[$file][$line])) {
-                    $output[$file][$line] = $result[$file][$line];
-                } else {
-                    $output[$file][$line] = $value;
-                }
-            }
-        }
-
-        $xml = new \SimpleXMLElement('<coverage/>');
-        $project = $xml->addChild('project');
-        foreach ($output as $file => $lines) {
-            $class = $project->addChild('file');
-            $class->addAttribute('name', $file);
-            foreach ($lines as $line => $value) {
-                $row = $class->addChild('line');
-                $row->addAttribute('num', $line);
-                $row->addAttribute('count', $value);
-            }
-        }
-
-        $storage = $this->di->get(StorageInterface::class);
-        $storage->save(__DIR__ . '/../unit-tests.coverage.xml', $xml->asXML());
+        $storage = $this->container->get(StorageInterface::class);
+        $storage->save(__DIR__ . '/../unit-tests.coverage.xml', $xml);
     }
 }
