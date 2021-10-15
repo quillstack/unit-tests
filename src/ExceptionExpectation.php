@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Quillstack\UnitTests;
 
 class ExceptionExpectation
@@ -19,5 +21,15 @@ class ExceptionExpectation
     public static function expected(string $exception): bool
     {
         return static::$expectedException === $exception;
+    }
+
+    public static function isExpected(): bool
+    {
+        return static::$expectedException !== null;
+    }
+
+    public static function getExceptionClass(): ?string
+    {
+        return static::$expectedException;
     }
 }
