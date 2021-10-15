@@ -73,6 +73,8 @@ class UnitTests
 
         $storage = $this->container->get(StorageInterface::class);
         $storage->save($rootDir . '/unit-tests.coverage.xml', $xml);
+
+        echo 'Coverage XML saved to: ', $rootDir, '/unit-tests.coverage.xml', PHP_EOL;
     }
 
     /**
