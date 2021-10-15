@@ -24,9 +24,10 @@ class UnitTests
     /**
      * @throws ReflectionException
      */
-    public function run(?string $srcDir = __DIR__): void
+    public function run(?string $srcDir = __DIR__, ?string $rootDir = __DIR__): void
     {
         $srcDir ??= __DIR__;
+        $rootDir ??= __DIR__;
         $this->testCoverage->start();
 
         foreach ($this->tests as $test) {
@@ -46,7 +47,7 @@ class UnitTests
         }
 
         $this->testCoverage->end();
-        $this->saveCoverageXml($srcDir);
+        $this->saveCoverageXml($srcDir, $rootDir);
     }
 
     /**
@@ -66,12 +67,12 @@ class UnitTests
         }
     }
 
-    private function saveCoverageXml(string $srcDir): void
+    private function saveCoverageXml(string $srcDir, string $rootDir): void
     {
         $xml = $this->testCoverage->process($srcDir);
 
         $storage = $this->container->get(StorageInterface::class);
-        $storage->save($srcDir . '/../unit-tests.coverage.xml', $xml);
+        $storage->save($rootDir . '/unit-tests.coverage.xml', $xml);
     }
 
     /**

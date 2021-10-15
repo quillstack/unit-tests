@@ -13,8 +13,8 @@ use Quillstack\TestCoverage\TestCoverageInterface;
 use Quillstack\TestCoverage\TestCoverageOutputInterface;
 use Quillstack\UnitTests\UnitTests;
 
-require ROOT . '/vendor/autoload.php';
-$tests = require ROOT . '/tests/unit.php';
+require $rootDir . '/vendor/autoload.php';
+$tests = require $rootDir . '/tests/unit.php';
 
 $container = new Container([
     StorageInterface::class => LocalStorage::class,
@@ -24,4 +24,4 @@ $container = new Container([
 ]);
 
 $unitTests = new UnitTests($container, $tests);
-$unitTests->run($srcDir);
+$unitTests->run($srcDir, $rootDir);

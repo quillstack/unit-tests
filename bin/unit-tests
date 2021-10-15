@@ -3,6 +3,6 @@
 
 declare(strict_types=1);
 
-const ROOT = __DIR__ . '/../../../..';
+$rootDir = __DIR__ . '/../../../..';
 $srcDir = str_replace('vendor/quillstack/unit-tests/bin/', 'src/', __DIR__);
-require ROOT . '/src/bootstrap.php';
+require __DIR__ . '/../src/bootstrap.php';

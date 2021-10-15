@@ -3,6 +3,6 @@
 
 declare(strict_types=1);
 
-const ROOT = __DIR__ . '/..';
+$rootDir = __DIR__ . '/..';
 $srcDir = null;
-require ROOT . '/src/bootstrap.php';
+require $rootDir . '/src/bootstrap.php';
