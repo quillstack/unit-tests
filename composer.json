@@ -21,7 +21,8 @@
     "autoload": {
         "psr-4": {
             "Quillstack\\UnitTests\\": "src/",
-            "Quillstack\\Tests\\Unit\\": "tests/unit/"
+            "Quillstack\\UnitTests\\Tests\\Unit\\": "tests/unit/",
+            "Quillstack\\UnitTests\\Tests\\DataProviders\\": "tests/data-providers/"
         }
     },
     "require": {

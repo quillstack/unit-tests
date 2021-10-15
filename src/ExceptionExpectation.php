@@ -20,4 +20,14 @@ class ExceptionExpectation
     {
         return static::$expectedException === $exception;
     }
+
+    public static function isExpected(): bool
+    {
+        return static::$expectedException !== null;
+    }
+
+    public static function getExceptionClass(): ?string
+    {
+        return static::$expectedException;
+    }
 }

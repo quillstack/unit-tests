@@ -1,6 +1,6 @@
 <?php
 
-use Quillstack\Tests\Unit\TestAssertBoolean;
+use Quillstack\UnitTests\Tests\Unit\TestAssertBoolean;
 
 return [
     TestAssertBoolean::class,

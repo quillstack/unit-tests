@@ -1,11 +1,14 @@
 <?php
 
-namespace Quillstack\Tests\Unit;
+namespace Quillstack\UnitTests\Tests\Unit;
 
 use Quillstack\UnitTests\AssertExceptions;
+use Quillstack\UnitTests\Attributes\ProvidesDataFrom;
 use Quillstack\UnitTests\Exceptions\Types\ValueIsNotFalseException;
 use Quillstack\UnitTests\Exceptions\Types\ValueIsNotTrueException;
 use Quillstack\UnitTests\Exceptions\Types\ValueNotBooleanException;
+use Quillstack\UnitTests\Tests\DataProviders\BooleanData\BooleanDataProvider;
+use Quillstack\UnitTests\Tests\DataProviders\BooleanData\NotBooleanDataProvider;
 use Quillstack\UnitTests\Types\AssertBoolean;
 
 class TestAssertBoolean
@@ -51,16 +54,16 @@ class TestAssertBoolean
         $this->assertBoolean->isTrue(0);
     }
 
-    public function booleanSuccess()
-    {
-        $this->assertBoolean->isBoolean(true);
-        $this->assertBoolean->isBoolean(false);
-    }
-
-    public function booleanFailure()
+    #[ProvidesDataFrom(NotBooleanDataProvider::class)]
+    public function booleanFailure($value)
     {
         $this->assertExceptions->expect(ValueNotBooleanException::class);
-        $this->assertBoolean->isBoolean(1);
-        $this->assertBoolean->isBoolean('abc');
+        $this->assertBoolean->isBoolean($value);
+    }
+
+    #[ProvidesDataFrom(BooleanDataProvider::class)]
+    public function booleanSuccess($value)
+    {
+        $this->assertBoolean->isBoolean($value);
     }
 }
