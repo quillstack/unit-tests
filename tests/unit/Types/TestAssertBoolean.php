@@ -6,9 +6,9 @@ namespace Quillstack\UnitTests\Tests\Unit\Types;
 
 use Quillstack\UnitTests\AssertExceptions;
 use Quillstack\UnitTests\Attributes\ProvidesDataFrom;
-use Quillstack\UnitTests\Exceptions\Types\Boolean\ValueIsNotFalseException;
-use Quillstack\UnitTests\Exceptions\Types\Boolean\ValueIsNotTrueException;
-use Quillstack\UnitTests\Exceptions\Types\Boolean\ValueNotBooleanException;
+use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueIsNotFalseException;
+use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueIsNotTrueException;
+use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueNotBooleanException;
 use Quillstack\UnitTests\Tests\DataProviders\BooleanData\BooleanDataProvider;
 use Quillstack\UnitTests\Tests\DataProviders\BooleanData\NotBooleanDataProvider;
 use Quillstack\UnitTests\Types\AssertBoolean;

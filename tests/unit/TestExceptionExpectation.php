@@ -19,7 +19,7 @@ class TestExceptionExpectation
     public function expectException($exception)
     {
         ExceptionExpectation::set($exception);
-        $this->assertString->equals($exception, ExceptionExpectation::getExceptionClass());
+        $this->assertString->equal($exception, ExceptionExpectation::getExceptionClass());
         ExceptionExpectation::reset();
     }
 }
