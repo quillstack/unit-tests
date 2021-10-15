@@ -13,7 +13,7 @@ use Quillstack\UnitTests\Tests\DataProviders\BooleanData\BooleanDataProvider;
 use Quillstack\UnitTests\Tests\DataProviders\BooleanData\NotBooleanDataProvider;
 use Quillstack\UnitTests\Types\AssertBoolean;
 
-class TestAssertBoolean
+class TestAssertBooleans
 {
     public function __construct(
         private AssertBoolean $assertBoolean,
