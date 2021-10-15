@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Quillstack\UnitTests\Types;
 
-use Quillstack\UnitTests\Exceptions\Types\Boolean\ValueIsNotFalseException;
-use Quillstack\UnitTests\Exceptions\Types\Boolean\ValueIsNotTrueException;
-use Quillstack\UnitTests\Exceptions\Types\Boolean\ValueNotBooleanException;
+use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueIsNotFalseException;
+use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueIsNotTrueException;
+use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueNotBooleanException;
 
 class AssertBoolean
 {
