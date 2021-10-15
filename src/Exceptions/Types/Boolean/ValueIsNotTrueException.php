@@ -1,6 +1,6 @@
 <?php
 
-namespace Quillstack\UnitTests\Exceptions\Types;
+namespace Quillstack\UnitTests\Exceptions\Types\Boolean;
 
 use Quillstack\UnitTests\Exceptions\UnitTestsException;
 
