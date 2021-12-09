@@ -30,5 +30,10 @@
         "quillstack/local-storage": "^0.0.1",
         "quillstack/di": "^0.0.3",
         "quillstack/test-coverage": "^0.0.4"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.0.7"
+        }
     }
 }
