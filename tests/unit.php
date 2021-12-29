@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-use Quillstack\UnitTests\Tests\Unit\TestAssertEqual;
-use Quillstack\UnitTests\Tests\Unit\TestExceptionExpectation;
-use Quillstack\UnitTests\Tests\Unit\Types\TestAssertArrays;
-use Quillstack\UnitTests\Tests\Unit\Types\TestAssertBooleans;
-
 return [
-    TestExceptionExpectation::class,
-    TestAssertBooleans::class,
-    TestAssertArrays::class,
-    TestAssertEqual::class,
+    \Quillstack\UnitTests\Tests\Unit\TestAssertEqual::class,
+    \Quillstack\UnitTests\Tests\Unit\TestExceptionExpectation::class,
+
+    \Quillstack\UnitTests\Tests\Unit\Types\TestAssertArrays::class,
+    \Quillstack\UnitTests\Tests\Unit\Types\TestAssertBooleans::class,
+    \Quillstack\UnitTests\Tests\Unit\Types\TestAssertObjects::class,
 ];
