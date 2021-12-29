@@ -6,7 +6,8 @@ namespace Quillstack\UnitTests\Tests\Unit\Types;
 
 use Quillstack\UnitTests\AssertExceptions;
 use Quillstack\UnitTests\Exceptions\Types\Objects\ObjectIsNotInstanceOfClassException;
-use Quillstack\UnitTests\Tests\Mocks\{Example, WrongClass};
+use Quillstack\UnitTests\Tests\Mocks\Example;
+use Quillstack\UnitTests\Tests\Mocks\WrongClass;
 use Quillstack\UnitTests\Types\AssertObject;
 
 class TestAssertObjects
