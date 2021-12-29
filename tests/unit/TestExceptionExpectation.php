@@ -13,6 +13,7 @@ class TestExceptionExpectation
 {
     public function __construct(private AssertString $assertString)
     {
+        //
     }
 
     #[ProvidesDataFrom(ExceptionsDataProvider::class)]
