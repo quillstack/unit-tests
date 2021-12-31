@@ -31,6 +31,7 @@ class TestAssertObjects
 
         $example = new Example();
         $this->assertObject->instanceOf(WrongClass::class, $example);
+        $this->assertObject->notNull($example);
     }
 
     public function nullException()
