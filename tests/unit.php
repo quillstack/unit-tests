@@ -8,5 +8,6 @@ return [
 
     \Quillstack\UnitTests\Tests\Unit\Types\TestAssertArrays::class,
     \Quillstack\UnitTests\Tests\Unit\Types\TestAssertBooleans::class,
+    \Quillstack\UnitTests\Tests\Unit\Types\TestAssertStrings::class,
     \Quillstack\UnitTests\Tests\Unit\Types\TestAssertObjects::class,
 ];
