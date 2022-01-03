@@ -8,7 +8,7 @@ use Exception;
 use Psr\Container\ContainerInterface;
 use Quillstack\StorageInterface\StorageInterface;
 use Quillstack\TestCoverage\TestCoverageInterface;
-use Quillstack\UnitTests\Exceptions\ExceptionExpectedException;
+use Quillstack\UnitTests\Exceptions\Exceptions\ExceptionExpectedException;
 use ReflectionException;
 use ReflectionMethod;
 
@@ -103,11 +103,15 @@ class UnitTests
             $testObject->$method(...$arg);
 
             if (ExceptionExpectation::isExpected()) {
-                throw new ExceptionExpectedException('Exception expected: ' . ExceptionExpectation::getExceptionClass());
+                throw new ExceptionExpectedException(
+                    'Exception expected: ' . ExceptionExpectation::getExceptionClass()
+                );
             }
 
             echo '.';
         } catch (Exception $exception) {
+            ExceptionExpectation::setExceptionMessage($exception->getMessage());
+
             if (ExceptionExpectation::expected(get_class($exception))) {
                 echo '.';
                 ExceptionExpectation::reset();
