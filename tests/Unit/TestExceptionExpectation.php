@@ -27,10 +27,9 @@ class TestExceptionExpectation
 
     public function expectMessage()
     {
-        ExceptionExpectation::setExceptionMessage('Wrong');
         $this->assertExceptions->expect(\RuntimeException::class);
-        $this->assertExceptions->expectMessage('Wrong');
+        $this->assertExceptions->expectMessage('Expected message');
 
-        throw new \RuntimeException('Wrong');
+        throw new \RuntimeException('Expected message');
     }
 }

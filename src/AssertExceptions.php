@@ -13,12 +13,8 @@ class AssertExceptions
         ExceptionExpectation::set($exception);
     }
 
-    public function messageEquals(string $message): void
+    public function expectMessage(string $message): void
     {
-        if ($message === ExceptionExpectation::getExceptionMessage()) {
-            return;
-        }
-
-        throw new ExceptionMessageException();
+        ExceptionExpectation::setExceptionMessage($message);
     }
 }
