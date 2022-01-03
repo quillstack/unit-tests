@@ -10,7 +10,7 @@ use Quillstack\UnitTests\Exceptions\Types\Booleans\ValueNotBooleanException;
 
 class AssertBoolean
 {
-    public function isTrue($value): void
+    public function isTrue(mixed $value): void
     {
         if ($value === true) {
             return;
@@ -19,7 +19,7 @@ class AssertBoolean
         throw new ValueIsNotTrueException();
     }
 
-    public function isFalse($value): void
+    public function isFalse(mixed $value): void
     {
         if ($value === false) {
             return;
@@ -28,7 +28,7 @@ class AssertBoolean
         throw new ValueIsNotFalseException();
     }
 
-    public function isBoolean($value): void
+    public function isBoolean(mixed $value): void
     {
         if (is_bool($value)) {
             return;
