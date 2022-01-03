@@ -9,6 +9,7 @@ use Psr\Container\ContainerInterface;
 use Quillstack\StorageInterface\StorageInterface;
 use Quillstack\TestCoverage\TestCoverageInterface;
 use Quillstack\UnitTests\Exceptions\Exceptions\ExceptionExpectedException;
+use Quillstack\UnitTests\Exceptions\Exceptions\ExceptionMessageException;
 use ReflectionException;
 use ReflectionMethod;
 
@@ -110,9 +111,15 @@ class UnitTests
 
             echo '.';
         } catch (Exception $exception) {
-            ExceptionExpectation::setExceptionMessage($exception->getMessage());
-
             if (ExceptionExpectation::expected(get_class($exception))) {
+                $expectedMessage = ExceptionExpectation::getExceptionMessage();
+
+                if ($expectedMessage !== null && $expectedMessage !== $exception->getMessage()) {
+                    throw new ExceptionMessageException(
+                        "Expected message: {$expectedMessage}, current message {$exception->getMessage()}"
+                    );
+                }
+
                 echo '.';
                 ExceptionExpectation::reset();
 
