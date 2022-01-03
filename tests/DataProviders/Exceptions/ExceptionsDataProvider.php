@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Quillstack\UnitTests\Tests\DataProviders;
+namespace Quillstack\UnitTests\Tests\DataProviders\Exceptions;
 
 use Quillstack\UnitTests\DataProviderInterface;
 use RuntimeException;

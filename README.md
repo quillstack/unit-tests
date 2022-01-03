@@ -14,6 +14,21 @@
 
 A simple library for unit testing in PHP 8.
 
+### Unit tests
+Run your tests using a command:
+
+```shell
+phpdbg -qrr ./vendor/bin/unit-tests
+```
+
+Run local tests for this library:
+
+```shell
+phpdbg -qrr ./bin/local
+```
+
+### Docker
+
 ```shell
 $ docker-compose up -d
 $ docker exec -w /var/www/html -it quillstack_unit-tests sh
