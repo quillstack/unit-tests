@@ -9,6 +9,7 @@ use Quillstack\UnitTests\Attributes\ProvidesDataFrom;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayCountNotMatchException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayDoesntHaveKeyException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayHasKeyException;
+use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayValuesEqualException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayValuesNotEqualException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ValueIsNotArrayException;
 use Quillstack\UnitTests\Tests\DataProviders\ArrayData\ArrayKeysDataProvider;
@@ -95,5 +96,19 @@ class TestAssertArrays
         $this->assertExceptions->expect(ArrayValuesNotEqualException::class);
 
         $this->assertArray->equal($a, $b);
+    }
+
+    #[ProvidesDataFrom(NotEqualArraysDataProvider::class)]
+    public function notEqual(array $a, array $b)
+    {
+        $this->assertArray->notEqual($a, $b);
+    }
+
+    #[ProvidesDataFrom(ArraysDataProvider::class)]
+    public function notEqualException(array $a)
+    {
+        $this->assertExceptions->expect(ArrayValuesEqualException::class);
+
+        $this->assertArray->notEqual($a, $a);
     }
 }

@@ -7,6 +7,7 @@ namespace Quillstack\UnitTests\Types;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayCountNotMatchException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayDoesntHaveKeyException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayHasKeyException;
+use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayValuesEqualException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayValuesNotEqualException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ValueIsNotArrayException;
 
@@ -55,5 +56,14 @@ class AssertArray
         }
 
         throw new ArrayValuesNotEqualException();
+    }
+
+    public function notEqual(array $a, array $b): void
+    {
+        if ($a !== $b) {
+            return;
+        }
+
+        throw new ArrayValuesEqualException();
     }
 }
