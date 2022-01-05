@@ -7,6 +7,7 @@ namespace Quillstack\UnitTests\Types;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayCountNotMatchException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayDoesntHaveKeyException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayHasKeyException;
+use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayValuesNotEqualException;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ValueIsNotArrayException;
 
 class AssertArray
@@ -45,5 +46,14 @@ class AssertArray
         }
 
         throw new ArrayHasKeyException("Key `{$key}` exists in array");
+    }
+
+    public function equal(array $a, array $b): void
+    {
+        if ($a === $b) {
+            return;
+        }
+
+        throw new ArrayValuesNotEqualException();
     }
 }
