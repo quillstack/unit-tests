@@ -28,7 +28,7 @@
         "php": "^8.0",
         "quillstack/local-storage": "^1.0",
         "quillstack/di": "^1.0",
-        "quillstack/test-coverage": "^0.0.4"
+        "quillstack/test-coverage": "^1.0"
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
