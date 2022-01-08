@@ -7,6 +7,7 @@ namespace Quillstack\UnitTests\Tests\Unit;
 use Quillstack\UnitTests\AssertEmpty;
 use Quillstack\UnitTests\AssertExceptions;
 use Quillstack\UnitTests\Attributes\ProvidesDataFrom;
+use Quillstack\UnitTests\Exceptions\EmptyValueException;
 use Quillstack\UnitTests\Exceptions\ValueNotEmptyException;
 use Quillstack\UnitTests\Tests\DataProviders\EmptyDataProvider;
 use Quillstack\UnitTests\Tests\DataProviders\NotEmptyDataProvider;
@@ -30,5 +31,19 @@ class TestAssertEmpty
         $this->assertExceptions->expect(ValueNotEmptyException::class);
 
         $this->assertEmpty->isEmpty($value);
+    }
+
+    #[ProvidesDataFrom(NotEmptyDataProvider::class)]
+    public function isNotEmpty(mixed $value)
+    {
+        $this->assertEmpty->isNotEmpty($value);
+    }
+
+    #[ProvidesDataFrom(EmptyDataProvider::class)]
+    public function notEmptyException(mixed $value)
+    {
+        $this->assertExceptions->expect(EmptyValueException::class);
+
+        $this->assertEmpty->isNotEmpty($value);
     }
 }
