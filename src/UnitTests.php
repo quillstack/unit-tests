@@ -41,6 +41,12 @@ class UnitTests
                     continue;
                 }
 
+                $methodObject = new ReflectionMethod($testObject, $method);
+
+                if (!$methodObject->isPublic()) {
+                    continue;
+                }
+
                 $this->runTests($testObject, $method);
             }
 
