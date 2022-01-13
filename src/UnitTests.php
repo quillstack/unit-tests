@@ -80,7 +80,7 @@ class UnitTests
         $rootDirNoBin = str_replace('bin/../../../..', '', $rootDirNoBin);
         $xml = $this->testCoverage->process($srcDir, $rootDirNoBin);
 
-    $storage = $this->container->get(StorageInterface::class);
+        $storage = $this->container->get(StorageInterface::class);
         $storage->save($rootDir . '/unit-tests.coverage.xml', $xml);
 
         echo 'Coverage XML saved to: ', $rootDir, '/unit-tests.coverage.xml', PHP_EOL;
