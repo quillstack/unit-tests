@@ -76,14 +76,22 @@ class UnitTests
 
     private function saveCoverageXml(string $srcDir, string $rootDir): void
     {
-        $rootDirNoBin = str_replace('bin/..', '', $rootDir);
-        $rootDirNoBin = str_replace('bin/../../../..', '', $rootDirNoBin);
+        $rootDirNoBin = $this->removeAbsolutePath($rootDir);
         $xml = $this->testCoverage->process($srcDir, $rootDirNoBin);
 
         $storage = $this->container->get(StorageInterface::class);
         $storage->save($rootDir . '/unit-tests.coverage.xml', $xml);
 
         echo 'Coverage XML saved to: ', $rootDir, '/unit-tests.coverage.xml', PHP_EOL;
+    }
+
+    private function removeAbsolutePath(string $path): string
+    {
+        // Remove from vendor paths:
+        $rootDirNoBin = str_replace('vendor/quillstack/unit-tests/bin/../../../..', '', $path);
+
+        // Remove from local paths:
+        return str_replace('bin/..', '', $rootDirNoBin);
     }
 
     /**
