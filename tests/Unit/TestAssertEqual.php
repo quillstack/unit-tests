@@ -8,6 +8,7 @@ use Quillstack\UnitTests\AssertEqual;
 use Quillstack\UnitTests\AssertExceptions;
 use Quillstack\UnitTests\Attributes\ProvidesDataFrom;
 use Quillstack\UnitTests\Exceptions\Types\Arrays\ArrayValuesNotEqualException;
+use Quillstack\UnitTests\Exceptions\Types\Objects\ObjectValuesNotEqualException;
 use Quillstack\UnitTests\Exceptions\Types\Strings\StringValuesNotEqualException;
 use Quillstack\UnitTests\Exceptions\Types\ValueTypesNotEqualException;
 use Quillstack\UnitTests\Exceptions\ValuesNotEqualException;
@@ -24,6 +25,11 @@ class TestAssertEqual
     public function success(mixed $expected, mixed $value)
     {
         $this->assertEqual->equal($expected, $value);
+    }
+
+    public function successObjects()
+    {
+        $this->assertEqual->equal(new \stdClass(), new \stdClass());
     }
 
     public function failureGeneral()
@@ -48,5 +54,13 @@ class TestAssertEqual
     {
         $this->assertExceptions->expect(StringValuesNotEqualException::class);
         $this->assertEqual->equal('test', '');
+    }
+
+    public function failureObjects()
+    {
+        $this->assertExceptions->expect(ObjectValuesNotEqualException::class);
+        $object = new \stdClass();
+        $object->test = 3;
+        $this->assertEqual->equal(new \stdClass(), $object);
     }
 }
