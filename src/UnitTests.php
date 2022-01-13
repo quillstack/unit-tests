@@ -76,7 +76,7 @@ class UnitTests
 
     private function saveCoverageXml(string $srcDir, string $rootDir): void
     {
-        $xml = $this->testCoverage->process($srcDir);
+        $xml = $this->testCoverage->process($srcDir, $rootDir);
 
         $storage = $this->container->get(StorageInterface::class);
         $storage->save($rootDir . '/unit-tests.coverage.xml', $xml);
