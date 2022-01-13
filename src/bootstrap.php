@@ -14,7 +14,6 @@ use Quillstack\TestCoverage\TestCoverageOutputInterface;
 use Quillstack\UnitTests\UnitTests;
 
 require $rootDir . '/vendor/autoload.php';
-$tests = require $rootDir . '/tests/unit.php';
 
 $container = new Container([
     StorageInterface::class => LocalStorage::class,
@@ -23,5 +22,6 @@ $container = new Container([
     TestCoverageOutputInterface::class => CoverageXml::class,
 ]);
 
+$tests = require $rootDir . '/tests/unit.php';
 $unitTests = new UnitTests($container, $tests);
 $unitTests->run($srcDir, $rootDir);
