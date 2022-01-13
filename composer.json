@@ -27,7 +27,7 @@
     "require": {
         "php": "^8.0",
         "quillstack/local-storage": "^0.0.6",
-        "quillstack/di": "^0.0.7",
+        "quillstack/di": "^0.0.8",
         "quillstack/test-coverage": "^0.0.6"
     },
     "prefer-stable": true,
