@@ -13,6 +13,9 @@ use Quillstack\UnitTests\Exceptions\Types\Arrays\ValueIsNotArrayException;
 
 class AssertArray
 {
+    /**
+     * @param array<mixed> $array
+     */
     public function count(int $expected, array $array): void
     {
         if (count($array) === $expected) {
@@ -31,6 +34,9 @@ class AssertArray
         throw new ValueIsNotArrayException();
     }
 
+    /**
+     * @param array<mixed> $array
+     */
     public function hasKey(int|string $key, array $array): void
     {
         if (array_key_exists($key, $array)) {
@@ -40,6 +46,9 @@ class AssertArray
         throw new ArrayDoesntHaveKeyException("Key `{$key}` doesn't exist in array");
     }
 
+    /**
+     * @param array<mixed> $array
+     */
     public function doesntHaveKey(int|string $key, array $array): void
     {
         if (!array_key_exists($key, $array)) {
@@ -49,6 +58,10 @@ class AssertArray
         throw new ArrayHasKeyException("Key `{$key}` exists in array");
     }
 
+    /**
+     * @param array<mixed> $a
+     * @param array<mixed> $b
+     */
     public function equal(array $a, array $b): void
     {
         if ($a === $b) {
@@ -58,6 +71,10 @@ class AssertArray
         throw new ArrayValuesNotEqualException();
     }
 
+    /**
+     * @param array<mixed> $a
+     * @param array<mixed> $b
+     */
     public function notEqual(array $a, array $b): void
     {
         if ($a !== $b) {

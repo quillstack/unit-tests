@@ -14,6 +14,14 @@ use Quillstack\TestCoverage\TestCoverageInterface;
 use Quillstack\TestCoverage\TestCoverageOutputInterface;
 use Quillstack\UnitTests\UnitTests;
 
+// Included by bin/unit-tests, which works out where the project and its sources are.
+$rootDir = $rootDir ?? null;
+$srcDir = $srcDir ?? null;
+
+if (!is_string($rootDir) || !is_string($srcDir)) {
+    throw new RuntimeException('bootstrap.php is included by bin/unit-tests, which sets $rootDir and $srcDir');
+}
+
 require $rootDir . '/vendor/autoload.php';
 
 // Coverage needs phpdbg. Without it the tests still run, they just report no coverage.

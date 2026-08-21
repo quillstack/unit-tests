@@ -11,18 +11,18 @@ class ExceptionExpectation
 
     public static function set(string $exception): void
     {
-        static::$expectedException = $exception;
+        self::$expectedException = $exception;
     }
 
     public static function setExceptionMessage(string $message): void
     {
-        static::$exceptionMessage = $message;
+        self::$exceptionMessage = $message;
     }
 
     public static function reset(): void
     {
-        static::$expectedException = null;
-        static::$exceptionMessage = null;
+        self::$expectedException = null;
+        self::$exceptionMessage = null;
     }
 
     /**
@@ -30,22 +30,22 @@ class ExceptionExpectation
      */
     public static function expected(string $exception): bool
     {
-        return static::$expectedException !== null
-            && is_a($exception, static::$expectedException, true);
+        return self::$expectedException !== null
+            && is_a($exception, self::$expectedException, true);
     }
 
     public static function isExpected(): bool
     {
-        return static::$expectedException !== null;
+        return self::$expectedException !== null;
     }
 
     public static function getExceptionClass(): ?string
     {
-        return static::$expectedException;
+        return self::$expectedException;
     }
 
     public static function getExceptionMessage(): ?string
     {
-        return static::$exceptionMessage;
+        return self::$exceptionMessage;
     }
 }

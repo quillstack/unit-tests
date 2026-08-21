@@ -22,7 +22,9 @@ class AssertEqual
             throw new ValueTypesNotEqualException(gettype($expected) . ' !== ' . gettype($value));
         }
 
-        if (is_object($expected) && $expected == $value) {
+        // Two objects of the same class holding the same values count as equal, which is
+        // what a test comparing a built object against an expected one is asking about.
+        if (is_object($expected) && is_object($value) && $expected == $value) {
             return;
         }
 

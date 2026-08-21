@@ -7,6 +7,7 @@ namespace Quillstack\UnitTests;
 use Quillstack\DI\Container;
 use Quillstack\StorageInterface\StorageInterface;
 use Quillstack\TestCoverage\TestCoverageInterface;
+use Quillstack\UnitTests\Attributes\ProvidesDataFrom;
 use Quillstack\UnitTests\Exceptions\Exceptions\ExceptionExpectedException;
 use Quillstack\UnitTests\Exceptions\Exceptions\ExceptionMessageException;
 use ReflectionException;
@@ -22,11 +23,19 @@ class UnitTests
      * The definitions every test container is built from, taken once so each test can get
      * a container of its own instead of sharing one with every other test.
      */
+    /**
+     * @var array<string, mixed>
+     */
     private array $config;
 
+    /**
+     * @param array<int, class-string> $tests
+     */
     public function __construct(private Container $container, private array $tests = [])
     {
-        $this->testCoverage = $this->container->get(TestCoverageInterface::class);
+        /** @var TestCoverageInterface $testCoverage */
+        $testCoverage = $this->container->get(TestCoverageInterface::class);
+        $this->testCoverage = $testCoverage;
         $this->config = $this->container->getConfig();
         $this->result = new TestResult();
     }
@@ -75,6 +84,11 @@ class UnitTests
     /**
      * @throws ReflectionException
      */
+    /**
+     * @return string[]
+     *
+     * @throws ReflectionException
+     */
     private function getTestMethods(string $test): array
     {
         $methods = [];
@@ -98,7 +112,10 @@ class UnitTests
      */
     private function createTestObject(string $test): object
     {
-        return (new Container($this->config))->get($test);
+        /** @var object $testObject */
+        $testObject = (new Container($this->config))->get($test);
+
+        return $testObject;
     }
 
     private function saveCoverageXml(string $srcDir, string $rootDir): void
@@ -112,6 +129,7 @@ class UnitTests
         $rootDirNoBin = $this->removeAbsolutePath($rootDir);
         $xml = $this->testCoverage->process($srcDir, $rootDirNoBin);
 
+        /** @var StorageInterface $storage */
         $storage = $this->container->get(StorageInterface::class);
         $storage->save($rootDir . '/unit-tests.coverage.xml', $xml);
 
@@ -165,20 +183,30 @@ class UnitTests
     /**
      * @throws ReflectionException
      */
+    /**
+     * The rows a data provider hands over, or nothing when the test does not name one.
+     *
+     * @return array<int, array<int, mixed>>
+     *
+     * @throws ReflectionException
+     */
     private function getArgs(string $test, string $method): array
     {
-        $reflection = new ReflectionMethod($test, $method);
+        $attributes = (new ReflectionMethod($test, $method))->getAttributes(ProvidesDataFrom::class);
 
-        if (!$reflection->getAttributes()) {
+        if ($attributes === []) {
             return [];
         }
 
-        $dataProviderClass = $reflection->getAttributes()[0]->newInstance()->dataProvider;
-        $dataProvider = new $dataProviderClass();
+        /** @var class-string<DataProviderInterface> $dataProviderClass */
+        $dataProviderClass = $attributes[0]->newInstance()->dataProvider;
 
-        return $dataProvider->provides();
+        return (new $dataProviderClass())->provides();
     }
 
+    /**
+     * @param array<int, mixed> $arg
+     */
     private function runSingleTest(string $test, string $method, array $arg): void
     {
         // A failing test is recorded and the run carries on, so one broken test no longer
