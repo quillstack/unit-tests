@@ -29,14 +29,14 @@
     "require": {
         "php": "^8.0",
         "quillstack/local-storage": "^0.1",
-        "quillstack/di": "^0.1",
-        "quillstack/test-coverage": "^0.1"
+        "quillstack/di": "^0.1.2",
+        "quillstack/test-coverage": "^0.2"
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-main": "0.3.x-dev"
+            "dev-main": "0.4.x-dev"
         }
     }
 }

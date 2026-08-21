@@ -25,9 +25,13 @@ class ExceptionExpectation
         static::$exceptionMessage = null;
     }
 
+    /**
+     * A subclass of the expected exception counts as expected, the way `instanceof` reads.
+     */
     public static function expected(string $exception): bool
     {
-        return static::$expectedException === $exception;
+        return static::$expectedException !== null
+            && is_a($exception, static::$expectedException, true);
     }
 
     public static function isExpected(): bool

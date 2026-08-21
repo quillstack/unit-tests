@@ -3,6 +3,17 @@
 
 declare(strict_types=1);
 
-$rootDir = __DIR__ . '/../../../..';
-$srcDir = str_replace('vendor/quillstack/unit-tests/bin', 'src/', __DIR__);
+// The tests are run from the root of the project. Walking up from this file breaks as soon
+// as the package is not installed in a plain vendor/ directory, so the working directory
+// is used first and the walk is only the fallback.
+$rootDir = getcwd();
+
+if (!is_file($rootDir . '/vendor/autoload.php')) {
+    $rootDir = __DIR__ . '/../../../..';
+}
+
+$srcDir = $rootDir . '/src/';
+
 require __DIR__ . '/../src/bootstrap.php';
+
+exit($exitCode);
