@@ -26,6 +26,12 @@ $container = new Container([
     TestCoverageOutputInterface::class => CoverageXml::class,
 ]);
 
-$tests = require $rootDir . '/tests/unit.php';
+// tests/unit.php returns the list of test classes, or an array holding that list under
+// `tests` next to the container definitions the tests need under `config`.
+$definition = require $rootDir . '/tests/unit.php';
+$tests = $definition['tests'] ?? $definition;
+
+$container->addToConfig($definition['config'] ?? []);
+
 $unitTests = new UnitTests($container, $tests);
 $exitCode = $unitTests->run($srcDir, $rootDir);
