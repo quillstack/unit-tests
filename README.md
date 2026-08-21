@@ -1,6 +1,6 @@
 # Quillstack Unit Tests
 
-[![Build Status](https://app.travis-ci.com/quillstack/unit-tests.svg?branch=main)](https://app.travis-ci.com/quillstack/unit-tests)
+[![Tests](https://github.com/quillstack/unit-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/quillstack/unit-tests/actions/workflows/tests.yml)
 [![Downloads](https://img.shields.io/packagist/dt/quillstack/unit-tests.svg)](https://packagist.org/packages/quillstack/unit-tests)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=quillstack_unit-tests&metric=coverage)](https://sonarcloud.io/dashboard?id=quillstack_unit-tests)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=quillstack_unit-tests&metric=ncloc)](https://sonarcloud.io/dashboard?id=quillstack_unit-tests)

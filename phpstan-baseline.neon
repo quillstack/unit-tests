@@ -1,0 +1,139 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Comparison operation "\=\=" between object and array\|bool\|float\|int\|object\|resource\|string\|null results in an error\.$#'
+			identifier: equal.invalid
+			count: 1
+			path: src/AssertEqual.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\DataProviderInterface\:\:provides\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/DataProviderInterface.php
+
+		-
+			message: '#^Unsafe access to private property Quillstack\\UnitTests\\ExceptionExpectation\:\:\$exceptionMessage through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
+			count: 3
+			path: src/ExceptionExpectation.php
+
+		-
+			message: '#^Unsafe access to private property Quillstack\\UnitTests\\ExceptionExpectation\:\:\$expectedException through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
+			count: 6
+			path: src/ExceptionExpectation.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:count\(\) has parameter \$array with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:doesntHaveKey\(\) has parameter \$array with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:equal\(\) has parameter \$a with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:equal\(\) has parameter \$b with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:hasKey\(\) has parameter \$array with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:notEqual\(\) has parameter \$a with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\Types\\AssertArray\:\:notEqual\(\) has parameter \$b with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Types/AssertArray.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$dataProvider\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Call to an undefined method object\:\:provides\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Cannot call method save\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\UnitTests\:\:__construct\(\) has parameter \$tests with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\UnitTests\:\:createTestObject\(\) should return object but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\UnitTests\:\:getArgs\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\UnitTests\:\:getTestMethods\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Method Quillstack\\UnitTests\\UnitTests\:\:runSingleTest\(\) has parameter \$arg with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Property Quillstack\\UnitTests\\UnitTests\:\:\$config type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Property Quillstack\\UnitTests\\UnitTests\:\:\$testCoverage \(Quillstack\\TestCoverage\\TestCoverageInterface\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/UnitTests.php
+
+		-
+			message: '#^Variable \$rootDir might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: src/bootstrap.php
+
+		-
+			message: '#^Variable \$srcDir might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/bootstrap.php
