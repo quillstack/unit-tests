@@ -28,15 +28,15 @@
     },
     "require": {
         "php": "^8.1",
-        "quillstack/local-storage": "^0.4",
-        "quillstack/di": "^0.4",
-        "quillstack/test-coverage": "^0.4"
+        "quillstack/local-storage": "^0.5",
+        "quillstack/di": "^0.5",
+        "quillstack/test-coverage": "^0.5"
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-main": "0.7.x-dev"
+            "dev-main": "0.8.x-dev"
         }
     },
     "require-dev": {
