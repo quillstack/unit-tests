@@ -135,8 +135,8 @@ class UnitTests
 
         $summary = $this->testCoverage->getSummary();
         echo 'Coverage: ', $summary['percent'], '% (',
-            $summary['covered'], '/', $summary['total'], ' lines in ',
-            $summary['files'], ' files)', PHP_EOL;
+        $summary['covered'], '/', $summary['total'], ' lines in ',
+        $summary['files'], ' files)', PHP_EOL;
         echo 'Coverage XML saved to: ', $rootDir, '/unit-tests.coverage.xml', PHP_EOL;
     }
 
@@ -147,13 +147,13 @@ class UnitTests
         foreach ($failures as $index => $failure) {
             $error = $failure['error'];
             echo PHP_EOL, $index + 1, ') ', $failure['test'], '::', $failure['method'], PHP_EOL,
-                '   ', $error::class, ': ', $error->getMessage(), PHP_EOL,
-                '   ', $error->getFile(), ':', $error->getLine(), PHP_EOL;
+            '   ', $error::class, ': ', $error->getMessage(), PHP_EOL,
+            '   ', $error->getFile(), ':', $error->getLine(), PHP_EOL;
         }
 
         echo PHP_EOL, 'Tests: ', $this->result->getTotal(),
-            ', passed: ', $this->result->getPassed(),
-            ', failed: ', count($failures), PHP_EOL;
+        ', passed: ', $this->result->getPassed(),
+        ', failed: ', count($failures), PHP_EOL;
     }
 
     /**

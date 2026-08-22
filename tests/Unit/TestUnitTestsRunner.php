@@ -12,12 +12,12 @@ use Quillstack\TestCoverage\TestCoverageDriverInterface;
 use Quillstack\TestCoverage\TestCoverageInterface;
 use Quillstack\TestCoverage\TestCoverageOutputInterface;
 use Quillstack\UnitTests\AssertEqual;
+use Quillstack\UnitTests\TestResult;
 use Quillstack\UnitTests\Tests\Mocks\Runner\MockFailingTest;
 use Quillstack\UnitTests\Tests\Mocks\Runner\MockPassingTest;
 use Quillstack\UnitTests\Tests\Mocks\Runner\MockStatefulTest;
-use Quillstack\UnitTests\TestResult;
-use Quillstack\UnitTests\UnitTests;
 use Quillstack\UnitTests\Types\AssertBoolean;
+use Quillstack\UnitTests\UnitTests;
 
 class TestUnitTestsRunner
 {
