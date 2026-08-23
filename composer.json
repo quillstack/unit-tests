@@ -10,7 +10,7 @@
         "unit",
         "tests"
     ],
-    "homepage": "https://quillstack.org/unit-tests",
+    "homepage": "https://quillstack.org/packages/unit-tests",
     "authors": [
         {
             "name": "Radek Ziemniewicz",
