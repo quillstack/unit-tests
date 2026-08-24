@@ -21,20 +21,34 @@ A test is a class, a test is a method on it, and what a test needs is asked for 
 constructor — the container builds it, the same way it builds everything else. Coverage comes
 with it, and needs no extension.
 
-### Requirements
+## Why this exists
+
+A test here is a plain class, and a test method is a method. There is nothing to extend, no
+attribute to remember, no configuration file, and no data provider syntax to look up — **what a
+test needs, it asks for in its constructor**, and the same container the application uses hands
+it over.
+
+That last part is the reason this exists rather than a preference about syntax. Every package in
+this framework is tested with the container that builds it in production, which means a test
+that passes is evidence the wiring works, not only the class.
+
+It is 1 MB and six packages, against PHPUnit's 11 MB and Pest's 18 MB. That matters less than
+the sentence above, and it is measured in the [benchmark](#benchmark) because somebody will ask.
+
+## Requirements
 
 - PHP 8.1 or newer
 - phpdbg for coverage, which ships with PHP
 
-### Installation
+## Installation
 
 ```shell
 composer require --dev quillstack/unit-tests
 ```
 
-### Usage
+## Usage
 
-#### A test
+### A test
 
 ```php
 namespace App\Tests\Unit;
@@ -61,7 +75,7 @@ about, and that is what the runner prints when it fails.
 Whatever the constructor asks for is built for it, so a test can take the thing it is testing
 as well as the assertions it needs.
 
-#### Listing them
+### Listing them
 
 `tests/unit.php` returns the classes to run:
 
@@ -88,7 +102,7 @@ return $tests;
 Leaving it out is better than passing quietly: a suite which never reached the database should
 not look like one that did.
 
-#### Running
+### Running
 
 ```shell
 vendor/bin/unit-tests
@@ -128,7 +142,7 @@ Each is a class, asked for in the constructor.
 | `Types\AssertObject` | `instanceOf()`, `notNull()` |
 | `Types\AssertString` | `equal()`, `isString()`, `isNotString()` |
 
-#### Expecting an exception
+### Expecting an exception
 
 `expect()` says what should be thrown before the thing that throws it:
 
@@ -168,7 +182,7 @@ public function eachItemCostsAHundred(int $items, int $total)
 
 One row per run, each holding the arguments.
 
-### Technical documentation
+## Technical documentation
 
 | Class | What it is |
 | --- | --- |
@@ -184,7 +198,40 @@ The runner works out where the project is from the working directory, so it runs
 of a package whether or not it is installed in a plain `vendor/` — a symlinked checkout used to
 break it.
 
-### Unit tests
+## Benchmark
+
+Fifty tests, each asserting one equality, written three times: as classes here, as a `TestCase`
+in PHPUnit, and as `it()` closures in Pest. Timed end to end — the shell call to the finished
+output, because that is the loop a person actually waits on. Ten runs, interleaved, median, on
+PHP 8.5.7.
+
+| | Version |
+| --- | --- |
+| quillstack/unit-tests | 0.9.0 |
+| phpunit/phpunit | 11.5.56 |
+| pestphp/pest | v3.8.7 |
+
+| | Fifty tests | Relative | Installed | Packages |
+| --- | --- | --- | --- | --- |
+| **quillstack/unit-tests** | **47.9 ms** | — | 1.0 MB | 6 |
+| phpunit/phpunit | 73.1 ms | 1.5× | 11 MB | 27 |
+| pestphp/pest | 96.5 ms | 2.0× | 18 MB | 58 |
+
+Most of all three figures is PHP starting up and an autoloader warming: the tests themselves
+take under a millisecond in every case. What the table really measures is how much each tool
+loads before it can run anything, which is also why the size column is next to it.
+
+**And what those two have that this does not** is most of what a test runner is usually asked
+for: mocking, code coverage integration, test doubles, `@dataProvider`, parallel execution,
+random ordering, snapshot testing, watch mode, an assertion library of two hundred methods, and
+in Pest's case an expectation syntax people genuinely enjoy. This has assertions arriving through
+a constructor and a list of classes.
+
+If you are choosing a test runner for an application, choose PHPUnit or Pest. This one exists
+because a framework testing itself with its own container proves something a separate runner
+cannot.
+
+## Tests
 
 This package is tested with itself:
 
@@ -194,13 +241,15 @@ composer test:coverage
 composer stan
 ```
 
-### Docker
+## The rest of Quillstack
 
-```shell
-docker-compose up -d
-docker exec -w /var/www/html -it quillstack_unit-tests sh
-```
+This is one component of [Quillstack](https://github.com/quillstack), a PHP framework which is
+as simple to use as it is strict about what it does.
 
-### License
+- [quillstack/di](https://github.com/quillstack/di) — what hands a test what it asked for
+- [quillstack/test-coverage](https://github.com/quillstack/test-coverage) — what the tests reached
+- [quillstack/benchmark](https://github.com/quillstack/benchmark) — what produced the table above
+
+## License
 
 MIT. See [LICENSE](LICENSE).
